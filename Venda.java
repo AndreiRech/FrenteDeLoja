@@ -36,8 +36,15 @@ public class Venda {
                     itensParaRemover.add(item);
                 }
             }
-            itens.removeAll(itensParaRemover);
-            return !itensParaRemover.isEmpty();
+    
+            if (!itensParaRemover.isEmpty()) {
+                for (ItemVenda itemRemover : itensParaRemover) {
+                    estoque.reposicaoEstoque(codigo, itemRemover.getQuantidade());
+                }
+    
+                itens.removeAll(itensParaRemover);
+                return true;
+            }
         }
         return false;
     }

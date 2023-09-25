@@ -256,7 +256,13 @@ public class App {
             precoUnitario = in.nextDouble();
 
             Produto produto = new Produto(codigo, descricao, precoUnitario);
-            catalogo.cadastra(produto);
+
+            if (catalogo.cadastra(produto)) {
+                System.out.println("\nProduto cadastrado com sucesso no catálogo!");
+            } else {
+                System.out.println("\nHouve um problema no cadastro no catálogo.");
+                break;
+            }
 
             System.out.print("\nDeseja cadastrar item no estoque? [S / N] : ");
             escolha = in.next().toUpperCase();
@@ -266,10 +272,10 @@ public class App {
                 quantidade = in.nextInt();
 
                 if(estoque.cadastraProduto(produto, quantidade)) {
-                    System.out.println("\nProduto cadastrado com sucesso!");
+                    System.out.println("\nProduto cadastrado com sucesso no estoque!");
                 }
                 else {
-                    System.out.println("\nHouve um problema no cadastro.");
+                    System.out.println("\nHouve um problema no cadastro no estoque.");
                 }
             }
             else {

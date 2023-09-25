@@ -7,10 +7,12 @@ public class CatalogoProdutos {
     }
 
     public boolean cadastra(Produto p) {
-        if (!produtos.contains(p)) {
-            return produtos.add(p);
+        for (Produto produtoExistente : produtos) {
+            if (produtoExistente.getCodigo() == p.getCodigo()) {
+                return false;
+            }
         }
-        return false;
+        return produtos.add(p);
     }
 
     public Produto consulta(int codigo) {
